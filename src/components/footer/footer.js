@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-import Navbar from '../headernavbar/navbar';
-import logo from '../../../static/assets/images/logos/caballoblanco.png';
-
 class Footer extends Component {
     constructor() {
         super();
