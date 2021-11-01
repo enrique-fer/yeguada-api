@@ -1,0 +1,21 @@
+.header {
+    grid-row: header-s/header-e;
+    grid-column: s/e;
+    height: 150px;
+    background-color: black;
+
+    display: flex;
+
+
+    & > * {
+        grid-row: 1/-1;
+        margin: 0px auto;
+        align-self: center;
+    }
+
+    &__title {
+        font-family: 'Dancing Script', cursive;
+        color: #cbcbcb;
+        font-size: 3em;
+    }
+}

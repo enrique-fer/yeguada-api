@@ -1,0 +1,87 @@
+.caballos {
+    position: relative;
+    margin-top: 24px;
+    grid-row: content-s/content-e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caballos-grid {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+
+    min-height: calc(100vh - 250px);
+}
+
+.caballos-grid a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.1rem;
+}
+
+.caballo-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.caballo {
+    display: grid;
+    grid-template-columns: [img-s] 150px [img-e nombre-s] 1fr [nombre-e];
+    height: 150px;
+    width: 300px;
+    
+    margin: 5px;
+    box-shadow: 12px 5px 35px 5px rgba(0, 0, 0, 0.2);
+
+    &__foto {
+        grid-column: img-s/img-e;
+        grid-row: 1/-1;
+    }
+
+    &__nombre {
+        grid-column: nombre-s/nombre-e;
+        grid-row: 1/-1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.caballo-acciones {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 42px;
+
+    opacity: 0;
+    width: 60px;
+    align-items: center;
+    justify-items: center;
+    transform: translateX(-50px);
+    transition: 0.5s ease;
+}
+
+.action-btn {
+    border: none;
+    background: none;
+}
+
+.action-btn i {
+    font-size: 0.2rem;
+    transition: 0.5s ease;
+}
+
+.caballo-card:hover .caballo-acciones {
+    opacity: 1;
+}
+
+.caballo-card:hover .action-btn i {
+    font-size: 1.5rem;
+    transform: translateX(50px);
+}

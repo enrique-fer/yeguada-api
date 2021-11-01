@@ -1,0 +1,11 @@
+/*Footer Styles*/
+.footer {
+    grid-row: footer-s/footer-e;
+    grid-column: 1/-1;
+    background-color: black;
+    color: #cbcbcb;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,38 @@
+html {
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    font-family: "Open Sans";
+    color: #808080;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: greyscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@import './layout.scss';
+
+@import './headernavbar/header.scss';
+@import './headernavbar/menu-nav.scss';
+
+@import './footer/footer.scss';
+
+@import './home/home.scss';
+
+@import './caballo/caballo.scss';
+
+@import './editar/editar.scss';
+@import './editar/form.scss';
+
+@import './forms/btns.scss';

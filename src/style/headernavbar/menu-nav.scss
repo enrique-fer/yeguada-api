@@ -1,0 +1,76 @@
+/*Menu Nav Styles*/
+.menu-wrapper > .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-wrapper > .dropdown > .dropbtn {
+    background-color: transparent;
+    color: #cbcbcb;
+    padding: 20px;
+    font-size: 2em;
+    border: none;
+}
+
+.menu-wrapper > .dropdown > .dropbtn:focus {
+    outline: none;
+}
+
+.menu-wrapper > .dropdown > .links-wrapper {
+    padding: 20px;
+    display: none;
+    position: absolute;
+    min-width: 50px;
+    z-index: 1;
+}
+
+.menu-wrapper > .dropdown > .links-wrapper > .nav-link a {
+    margin-bottom: 20px;
+    text-align: left;
+    display: block;
+}
+
+.menu-wrapper > .dropdown:hover > .links-wrapper {
+    display: block;
+}
+
+.menu-wrapper > .dropdown:hover > .dropbtn {
+    color: #cea135;
+}
+
+/*Link Styles*/
+.links {
+    display: grid;
+    justify-self: center;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.navbar {
+    &__link {
+        width: 120px;
+        text-align: center;
+    }
+}
+
+.navbar a {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    color: #cbcbcb;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: 0.5s ease-in;
+}
+
+.navbar a:hover {
+    color: #cea135;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.link {
+    text-decoration: none;
+}

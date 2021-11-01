@@ -1,0 +1,36 @@
+.place {
+    background-image: url("../../static/assets/images/backgrounds/orange-flowers-bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &__left {
+        float: left;
+        padding: 5px 0px;
+
+        &__top {
+            color: #cea135;
+            background-color: #0b2b07;
+        }
+    }
+
+    &__right {
+        float: right;
+        padding: 5px 0px;
+
+        &__top {
+            background-color: #cea135;
+            color: #0b2b07;
+        }
+    }
+
+    &__left,
+    &__right {
+        &__top {
+            width: 350px;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 2em;
+        }
+    }
+}

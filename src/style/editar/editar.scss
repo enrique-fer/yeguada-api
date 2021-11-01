@@ -1,0 +1,87 @@
+.editar, 
+.crear {
+    grid-row: content-s/content-e;
+
+    margin-top: 42px;
+    margin-bottom: 42px;
+    min-height: calc(100vh - 250px);
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.item {
+    display: grid;
+    grid-template-rows: [img-s] 450px [img-e] 34px [content-s] minmax(500px, 650px) [content-e];
+
+    &__foto {
+        grid-row: img-s/img-e;
+
+        display: grid;
+        grid-template-columns: 1fr;
+
+        input {
+            height: 40px;
+        }
+    }
+
+    &__content {
+        grid-row: content-s/content-e;
+    
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+    }
+}
+
+// caballo styles
+.caballo-form {
+    display: grid;
+    grid-template-rows: [nombre-s] 110px [nombre-e family-s] 110px [family-e raza-s] 110px [raza-e color-s] 110px [color-e edad-s] 110px [edad-e] 24px [btn-s] 50px [btn-e] ;
+    grid-template-columns: [s] 1fr [m] 1fr [e];
+    grid-column-gap: 24px;
+
+    &__nombre {
+        grid-row: nombre-s/nombre-e;
+        grid-column: 1/-1;
+    }
+
+    &__padre {
+        grid-row: family-s/family-e;
+        grid-column: s/m;
+        width: 90%;
+    }
+
+    &__madre {
+        grid-row: family-s/family-e;
+        grid-column: m/e;
+        width: 90%;
+    }
+
+    &__raza {
+        grid-row: raza-s/raza-e;
+        grid-column: 1/-1;
+    }
+
+    &__color {
+        grid-row: color-s/color-e;
+        grid-column: 1/-1;
+    }
+
+    &__edad {
+        grid-row: edad-s/edad-e;
+        grid-column: 1/-1;
+    }
+
+    &__btn {
+        grid-row: btn-s/btn-e;
+        grid-column: 1/-1;
+    }
+}
+
+.cab-image {
+    width: 800px;
+    height: 450px;
+}

@@ -1,0 +1,60 @@
+/*Button Styles*/
+.btn {
+    background-color: #cea135;
+    color: #0b2b07;
+    font-size: 1.25em;
+    padding: 10px 25px;
+    border: 1px solid #cea135;
+    border-radius: 2px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.center-btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.btn:active {
+    box-shadow: 5px 5px 30px 5px rgba(0, 0, 0, 0.4);
+}
+
+.edit-btn,
+.delete-btn {
+    color: black;
+    cursor: pointer;
+}
+
+.edit-btn:hover i {
+    color: rgb(68, 124, 196);
+}
+
+.delete-btn:hover {
+    color: rgb(199, 64, 64);
+}
+
+.float-right-btn {
+    width: 70px;
+    height: 70px;
+    background-color: black;
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.create-btn {
+    font-size: 2em;
+    color: white;
+}
+
+// .create-btn:hover i {
+//     color: rgb(28, 133, 28);
+// }
