@@ -13,7 +13,6 @@ router.get('/', CaballoController.getCaballos);
 router.get('/:id', CaballoController.getCaballo);
 router.post('/save', CaballoController.save);
 router.post('/upload-image/:id', CaballoController.upload);
-router.get('/get-image/:image', CaballoController.getImage);
 router.put('/update/:id', CaballoController.update);
 router.delete('/delete/:id', CaballoController.delete);
 

@@ -1,8 +1,6 @@
 'use strict'
 
 var validator = require('validator');
-var fs = require('fs');
-var path = require('path');
 var cloudinary = require('cloudinary').v2;
 
 var Caballo = require('../models/caballo');
@@ -158,19 +156,6 @@ var controller = {
                     );
                 },
             );
-        }
-    },
-    getImage: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/caballos/' + file;
-
-        if (fs.existsSync(path_file)) {
-            return res.sendFile(path.resolve(path_file));
-        } else {
-            return res.status(404).send({
-                status: 'error',
-                message: 'La imagen no existe'
-            });
         }
     },
     update: (req, res) => {

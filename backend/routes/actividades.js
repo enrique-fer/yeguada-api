@@ -13,7 +13,6 @@ router.get('/', ActividadController.getActividades);
 router.get('/:id', ActividadController.getActividad);
 router.post('/save', ActividadController.save);
 router.post('/upload-image/:id', md_upload, ActividadController.upload);
-router.get('/get-image/:image', ActividadController.getImage);
 router.put('/update/:id', ActividadController.update);
 router.delete('/delete/:id', ActividadController.delete);
 

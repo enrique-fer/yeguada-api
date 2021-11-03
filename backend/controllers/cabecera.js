@@ -1,8 +1,7 @@
 'use strict'
 
 var validator = require('validator');
-var fs = require('fs');
-var path = require('path');
+var cloudinary = require('cloudinary').v2;
 
 var Cabecera = require('../models/cabecera');
 
@@ -123,39 +122,42 @@ var controller = {
                 });
             });
         } else {
-            var cabeceraId = req.params.id;
+            var photo = {};
+            cloudinary.config({
+                cloud_name: process.env.CLOUD_NAME,
+                api_key: process.env.API_KEY,
+                api_secret: process.env.API_SECRET
+            });
 
-            Cabecera.findOneAndUpdate(
-                { _id: cabeceraId },
-                { bg_image: file_name },
-                { new: true },
-                (err, cabeceraUpdated) => {
-                    if (err || !cabeceraUpdated) {
-                        return res.status(200).send({
-                            status: 'error',
-                            message: 'Error al guardar la imagen del cabecera'
-                        });
-                    }
+            cloudinary.uploader
+            .upload(
+                file_path,
+                {public_id: extension_split[0]},
+                (error, result) => {
+                    photo = result;
 
-                    return res.status(200).send({
-                        status: 'success',
-                        cabecera: cabeceraUpdated
-                    });
+                    var cabeceraId = req.params.id;
+
+                    Cabecera.findOneAndUpdate(
+                        { _id: cabeceraId },
+                        { bg_image: file_name },
+                        { new: true },
+                        (err, cabeceraUpdated) => {
+                            if (err || !cabeceraUpdated) {
+                                return res.status(200).send({
+                                    status: 'error',
+                                    message: 'Error al guardar la imagen del cabecera'
+                                });
+                            }
+
+                            return res.status(200).send({
+                                status: 'success',
+                                cabecera: cabeceraUpdated
+                            });
+                        }
+                    );
                 }
             );
-        }
-    },
-    getImage: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/cabeceras/' + file;
-
-        if (fs.existsSync(path_file)) {
-            return res.sendFile(path.resolve(path_file));
-        } else {
-            return res.status(404).send({
-                status: 'error',
-                message: 'La imagen no existe'
-            });
         }
     },
     delete: (req, res) => {

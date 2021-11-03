@@ -1,8 +1,7 @@
 'use strict'
 
 var validator = require('validator');
-var fs = require('fs');
-var path = require('path');
+var cloudinary = require('cloudinary').v2;
 
 var Actividad = require('../models/actividad');
 
@@ -125,39 +124,42 @@ var controller = {
                 });
             });
         } else {
-            var actividadId = req.params.id;
+            var photo = {};
+            cloudinary.config({
+                cloud_name: process.env.CLOUD_NAME,
+                api_key: process.env.API_KEY,
+                api_secret: process.env.API_SECRET
+            });
 
-            Actividad.findOneAndUpdate(
-                { _id: actividadId },
-                { image: file_name },
-                { new: true },
-                (err, actUpdated) => {
-                    if (err || !actUpdated) {
-                        return res.status(200).send({
-                            status: 'error',
-                            message: 'Error al guardar la imagen de la actividad'
-                        });
-                    }
+            cloudinary.uploader
+            .upload(
+                file_path,
+                {public_id: extension_split[0]},
+                (error, result) => {
+                    photo = result;
 
-                    return res.status(200).send({
-                        status: 'success',
-                        actividad: actUpdated
-                    });
+                    var actividadId = req.params.id;
+
+                    Actividad.findOneAndUpdate(
+                        { _id: actividadId },
+                        { image: file_name },
+                        { new: true },
+                        (err, actUpdated) => {
+                            if (err || !actUpdated) {
+                                return res.status(200).send({
+                                    status: 'error',
+                                    message: 'Error al guardar la imagen de la actividad'
+                                });
+                            }
+
+                            return res.status(200).send({
+                                status: 'success',
+                                actividad: actUpdated
+                            });
+                        }
+                    );
                 }
             );
-        }
-    },
-    getImage: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/actividades/' + file;
-
-        if (fs.existsSync(path_file)) {
-            return res.sendFile(path.resolve(path_file));
-        } else {
-            return res.status(404).send({
-                status: 'error',
-                message: 'La imagen no existe'
-            });
         }
     },
     update: (req, res) => {
