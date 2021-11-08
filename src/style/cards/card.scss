@@ -1,4 +1,4 @@
-.caballos {
+.cards {
     position: relative;
     margin-top: 24px;
     grid-row: content-s/content-e;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.caballos-grid {
+.card-grid {
     width: 50%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -17,20 +17,20 @@
     min-height: calc(100vh - 250px);
 }
 
-.caballos-grid a {
+.card-grid a {
     text-decoration: none;
     color: black;
     font-size: 1.1rem;
 }
 
-.caballo-card {
+.card {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 
-.caballo {
+.info {
     display: grid;
     grid-template-columns: [img-s] 150px [img-e nombre-s] 1fr [nombre-e];
     height: 150px;
@@ -54,7 +54,7 @@
     }
 }
 
-.caballo-acciones {
+.card-acciones {
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-gap: 42px;
@@ -77,11 +77,11 @@
     transition: 0.5s ease;
 }
 
-.caballo-card:hover .caballo-acciones {
+.card:hover .card-acciones {
     opacity: 1;
 }
 
-.caballo-card:hover .action-btn i {
+.card:hover .action-btn i {
     font-size: 1.5rem;
     transform: translateX(50px);
 }

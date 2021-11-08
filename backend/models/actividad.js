@@ -7,6 +7,7 @@ var ActividadSchema = Schema({
    title: String,
    content: Array,
    description: String,
+   duration: Number,
    icon: String,
    image: String
 });

@@ -13,6 +13,7 @@ var controller = {
             var validate_nombre = !validator.isEmpty(params.nombre);
             var validate_apellidos = !validator.isEmpty(params.apellidos);
             var validate_email = !validator.isEmpty(params.email);
+            var validate_telefono = !validator.isEmpty(params.telefono);
             var validate_password = !validator.isEmpty(params.password);
         } catch (err) {
             return res.status(200).send({
@@ -21,25 +22,28 @@ var controller = {
             });
         }
 
-        if (validate_nombre && validate_apellidos && validate_email && validate_password) {
+        if (validate_nombre && validate_apellidos && validate_email 
+            && validate_telefono && validate_password) {
             var usuario = new Usuario();
 
             usuario.nombre = params.nombre;
             usuario.apellidos = params.apellidos;
             usuario.email = params.email;
+            usuario.telefono = params.telefono;
             usuario.password = params.password;
+            usuario.token = service.createToken(usuario);
 
             usuario.save((err, usStored) => {
                 if (err || !usStored) {
                     return res.status(404).send({
                         status: 'error',
-                        message: `El usuario no se ha guardado ${err}`,
+                        message: `El usuario no se ha guardado`,
                     });
                 }
 
                 return res.status(200).send({
                     status: 'success',
-                    token: service.createToken(usStored),
+                    token: usStored.token,
                     logged_in: "LOGGED_IN"
                 });
             })
@@ -51,7 +55,59 @@ var controller = {
         }
     },
     signIn: (req, res) => {
-        Usuario.find({ email: req.body.email }, (err, user) => {
+        let usuario = req.body.user;
+
+        Usuario.find({ email: usuario.email, password: usuario.password }, (err, user) => {
+            if (err) {
+                return res.status(500).send({
+                    status: "error",
+                    message: err,
+                    logged_in: 'NOT_LOGGED_IN'
+                })
+            }
+
+            if (user.length == 0) {
+                return res.status(404).send({
+                    status: "error",
+                    message: "No existe el usuario",
+                    logged_in: 'NOT_LOGGED_IN'
+                })
+            }
+
+            let usuario = user[0];
+            let token = service.createToken(usuario);
+
+            Usuario.findByIdAndUpdate(
+                { _id : usuario._id },
+                { token: token },
+                { new: true },
+                (error, us) => {
+                    if (error) {
+                        return res.status(500).send({
+                            status: 'error',
+                            message: 'Error al actualizar'
+                        });
+                    }
+
+                    req.user = usuario;
+                    return res.status(200).send({
+                        status: "success",
+                        token: token,
+                        logged_in: "LOGGED_IN"
+                    });
+                }
+            )
+        })
+    },
+    checkAuth: (req, res) => {
+        res.status(200).send({
+            logged_in: 'LOGGED_IN'
+        })
+    },
+    getUser: (req, res) => {
+        let token = req.headers.authorization.split(' ')[1];
+
+        Usuario.find({ token: token }, (err, user) => {
             if (err) {
                 return res.status(500).send({
                     status: "error",
@@ -69,14 +125,8 @@ var controller = {
             req.user = user;
             res.status(200).send({
                 status: "success",
-                token: service.createToken(user),
-                logged_in: "LOGGED_IN"
+                user: user
             })
-        })
-    },
-    checkAuth: (req, res) => {
-        res.status(200).send({
-            logged_in: 'LOGGED_IN'
         })
     }
 };

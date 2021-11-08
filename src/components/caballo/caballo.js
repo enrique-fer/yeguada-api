@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Global from '../../Global';
+import { CloudinaryContext, Image } from 'cloudinary-react';
 
+import Global from '../../Global';
 
 class Caballo extends Component {
     url = Global.url_dev;
@@ -46,23 +47,31 @@ class Caballo extends Component {
 
     render() {
         return (
-            <div className='caballos'>
-                <div className='caballos-grid'>
+            <div className='cards'>
+                <div className='card-grid'>
                     {
                         this.state.caballos.map(caballo => {
                             return (
-                                <div className='caballo-card' key={caballo._id}>
-                                    <div className='caballo' >
-                                        <div className='caballo__foto'>
-                                            <img src="https://via.placeholder.com/150" />
+                                <div className='card' key={caballo._id}>
+                                    <div className='info' >
+                                        <div className='info__foto'>
+                                            {
+                                                caballo.image != null ? (
+                                                    <CloudinaryContext cloudName="djkulk2kk">
+                                                        <Image  publicId={caballo.image} width="150px" height="150px" />
+                                                    </CloudinaryContext>
+                                                ) : (
+                                                    <img src="https://via.placeholder.com/150" />
+                                                )
+                                            }
                                         </div>
 
-                                        <div className='caballo__nombre'>
+                                        <div className='info__nombre'>
                                             {caballo.title}
                                         </div>
                                     </div>
 
-                                    <div className='caballo-acciones'>
+                                    <div className='card-acciones'>
                                         <Link to={`/edit/caballo/${caballo._id}`} className='action-btn edit-btn' title="Editar caballo">
                                             <i className='fas fa-pencil-alt'></i>
                                         </Link>
