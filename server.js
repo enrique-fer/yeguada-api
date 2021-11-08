@@ -10,7 +10,7 @@ app.get(/.*/, function (req, res) {
 })
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://admin:YeguadaAdministrador@apirestyeguada.jflcd.mongodb.net/yeguada', { useNewUrlParser: true })
+mongoose.connect(process.env.DDBB, { useNewUrlParser: true })
     .then(() => {
         console.log("La conexion se ha realizado con exito");
 
