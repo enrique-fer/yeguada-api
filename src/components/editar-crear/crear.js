@@ -5,7 +5,7 @@ import history from '../../history';
 import Global from '../../Global';
 
 class Crear extends Component {
-    url = Global.url_dev;
+    url = Global.url;
 
     constructor(props) {
         super(props);

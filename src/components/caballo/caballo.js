@@ -6,7 +6,7 @@ import { CloudinaryContext, Image } from 'cloudinary-react';
 import Global from '../../Global';
 
 class Caballo extends Component {
-    url = Global.url_dev;
+    url = Global.url;
 
     constructor() {
         super();

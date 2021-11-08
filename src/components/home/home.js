@@ -6,7 +6,7 @@ import * as actions from '../../actions';
 import Global from '../../Global';
 
 class Home extends Component {
-    url = Global.url_dev;
+    url = Global.url;
 
     constructor(props) {
         super(props);

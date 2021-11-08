@@ -4,7 +4,7 @@ import { CaballoForm, CabeceraForm, ActividadForm } from './edit-createForms';
 import Global from '../../Global';
 
 class Editar extends Component {
-    url = Global.url_dev;
+    url = Global.url;
 
     constructor(props) {
         super(props);
